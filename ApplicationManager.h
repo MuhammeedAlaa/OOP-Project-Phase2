@@ -4,6 +4,10 @@
 #include "DEFS.h"
 #include "Figures\CFigure.h"
 #include "Figures\CRectangle.h"
+#include "Figures\Cline.h"
+#include "Figures\CRhombus.h"
+#include "Figures\CEllipse.h"
+#include "Figures\CTriangle.h"
 #include "GUI\input.h"
 #include "GUI\output.h"
 //Main class that manages everything in the application.
@@ -34,7 +38,8 @@ public:
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) ; //Search for a figure given a point inside the figure
-		
+	int GetFigureCount()const;		 // get the actual number of figures
+	CFigure ** GetFigures()const;   // get a copy of the figure list 	
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

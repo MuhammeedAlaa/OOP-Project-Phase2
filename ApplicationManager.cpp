@@ -1,14 +1,11 @@
 #include "ApplicationManager.h"
 #include "Actions\AddRectAction.h"
-#include "Figures\CRectangle.h"
-#include "Figures\CEllipse.h"
 #include "Actions\AddEllipseAction.h"
 #include "Actions\AddTriAction.h"
-#include "Figures\CTriangle.h"
 #include "Actions\AddLineAction.h"
-#include "Figures\Cline.h"
 #include "Actions\AddRhomAction.h"
-#include "Figures\CRhombus.h"
+#include "Actions\PickTypeAction.h"
+#include "Actions\SelectAction.h"
 #include <cstdlib>
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -80,10 +77,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				break;
 
 		case DRAW_COPY:
-			{
 				pOut->PrintMessage("Action: a Click on Copy, Click anywhere");
 				break;
-			}
+
 		case DRAW_PASTE:
 				pOut->PrintMessage("Action: a click on Paste, Click anywhere");
 				break;
@@ -111,14 +107,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				break;
 
 		case SELECT:
-				{pOut->PrintMessage("Action: a Click on Select, Click anywhere");
-				Point P;
-				pIn->GetPointClicked(P.x,P.y);
-				if(GetFigure(P.x,P.y))
-				GetFigure(P.x,P.y)->SetSelected(true);
-				SelectedFig=NULL;
+				pAct=new SelectAction(this);
 				break;
-				}
 
 		case DRAW_Todrawcolor:
 				pOut->PrintMessage("Action: to select a drawing  color  , Click anywhere");
@@ -157,53 +147,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				pOut->CreateDrawToolBar() ;
 				break;
 
-		case PICKTYPE:
-				{
-					UpdateInterface();
-					Point P;
-					pOut->PrintMessage("Action: a Click on Pick by type, Click anywhere");
-					CFigure *H= FigList[rand()%FigCount];
-					int X=0;
-					if(dynamic_cast<CRectangle*>(H))
-						X=1;
-					else
-						if(dynamic_cast<CTriangle*>(H))
-							X=2;
-					else
-					if(dynamic_cast<CLine*>(H))
-						X=3;
-					else
-					if(dynamic_cast<CElipse*>( H))
-					X=4;
-					else
-					if(dynamic_cast<CRhombus*>(H))
-						X=5;
-					for (int i = 0; i < FigCount; i++)
-					{
-						pIn->GetPointClicked(P.x,P.y);
-						if(dynamic_cast<CRectangle*>( GetFigure(P.x,P.y))&& X==1)
-						{GetFigure(P.x,P.y)->ChngDrawClr(LIGHTGOLDENRODYELLOW);
-						GetFigure(P.x,P.y)->Draw(pOut);	}
-					
-						if(dynamic_cast<CTriangle*>( GetFigure(P.x,P.y))&&X==2)
-							{GetFigure(P.x,P.y)->ChngDrawClr(LIGHTGOLDENRODYELLOW);
-						GetFigure(P.x,P.y)->Draw(pOut);	}
-						if(dynamic_cast<CLine*>( GetFigure(P.x,P.y))&&X==3)
-							{GetFigure(P.x,P.y)->ChngDrawClr(LIGHTGOLDENRODYELLOW);
-						GetFigure(P.x,P.y)->Draw(pOut);	}
-						if(dynamic_cast<CElipse*>( GetFigure(P.x,P.y))&&X==4)
-							{GetFigure(P.x,P.y)->ChngDrawClr(LIGHTGOLDENRODYELLOW);
-						GetFigure(P.x,P.y)->Draw(pOut);	}
-
-						if(dynamic_cast<CRhombus*>( GetFigure(P.x,P.y))&&X==5)
-						{GetFigure(P.x,P.y)->ChngDrawClr(LIGHTGOLDENRODYELLOW);
-						GetFigure(P.x,P.y)->Draw(pOut);	}			
-					}
-					
-
+		case PICKTYPE:	
+				pOut->PrintMessage("Action: a Click on Pick by type, Click anywhere");
+				pAct=new PickTypeAction (this);
 				break;
-				}
-
 		case PICKCOLOR:
 				pOut->PrintMessage("Action: a Click on Pick by color, Click anywhere");
 				break;
@@ -241,6 +188,22 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 	if(FigCount < MaxFigCount )
 		FigList[FigCount++] = pFig;	
 }
+
+CFigure** ApplicationManager::GetFigures()const
+{
+	CFigure *F [MaxFigCount];
+	for(int i = 0; i < FigCount; i++)
+	{
+		F[i] = FigList[i];
+	}
+	return F;
+}
+
+int ApplicationManager::GetFigureCount ()const
+{
+	return FigCount; 
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 //a function to get the area of a triangle
 
