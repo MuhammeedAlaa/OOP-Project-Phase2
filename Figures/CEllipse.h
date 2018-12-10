@@ -9,4 +9,5 @@ public:
 
 	Point GetFocus();
 	virtual void Draw(Output* pOut) const;
+	virtual bool IsInside(int ,int);
 };

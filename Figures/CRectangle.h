@@ -13,6 +13,7 @@ public:
 	Point GetC1();
 	Point GetC2();
 	virtual void Draw(Output* pOut) const;
+	virtual bool IsInside(int ,int);
 
 
 };

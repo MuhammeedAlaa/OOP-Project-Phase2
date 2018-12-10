@@ -8,7 +8,6 @@ int main()
 	ActionType ActType;
 	//Create an object of ApplicationManager
 	ApplicationManager AppManager;
-		int X=0;
 	do
 	{		
 		//Read user action
@@ -19,7 +18,6 @@ int main()
 		
 
 		//Update the interface
-		if(ActType!=TO_PLAY)
 		AppManager.UpdateInterface();	
 
 	}while(ActType != EXIT);

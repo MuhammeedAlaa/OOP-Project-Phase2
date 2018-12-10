@@ -5,7 +5,10 @@
 #include "Actions\AddLineAction.h"
 #include "Actions\AddRhomAction.h"
 #include "Actions\PickTypeAction.h"
+#include "Actions\ExitAction.h"
 #include "Actions\SelectAction.h"
+#include "Actions\SwitchToDrawAction.h"
+#include "Actions\SwitchToPlayAction.h"
 #include <cstdlib>
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -66,10 +69,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case TO_PLAY:
-				pOut->PrintMessage("Action: Switch to Play Mode, Creating Design toolbar");
-				pOut->ClearToolBar();
-				pOut->CreatePlayToolBar();
-				pOut->ClearDrawArea();
+				pAct=new SwitchToPlayAction(this);			
 				break;
 				
 		case DRAW_CUT:
@@ -97,9 +97,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				break;
 		
 		case TO_DRAW:
-				pOut->PrintMessage("Action: Switch to Draw Mode, Creating simualtion toolbar");
-				pOut->ClearToolBar();
-				pOut->CreateDrawToolBar();
+				pAct=new SwitchToDrawAction(this);
 				break;
 
 		case DRAW_RESIZE:
@@ -157,14 +155,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DEL:
 				pOut->PrintMessage("Action: a Click on Delete, Click anywhere");
 				break;
-				case EMPTY:
+		case EMPTY:
 				pOut->PrintMessage("Action: a click on empty area in the Design Tool Bar, Click anywhere");
 				break;
 
 		case EXIT:
 			///create ExitAction here
-			
-			break;
+				pAct=new ExitAction(this);			
+				break;
 		
 		case STATUS:	//a click on the status bar ==> no action
 			return;
@@ -182,14 +180,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //						Figures Management Functions								//
 //==================================================================================//
 
-//Add a figure to the list of figures
-void ApplicationManager::AddFigure(CFigure* pFig)
-{
-	if(FigCount < MaxFigCount )
-		FigList[FigCount++] = pFig;	
-}
-
-CFigure** ApplicationManager::GetFigures()const
+ CFigure** ApplicationManager::GetFigures()const
 {
 	CFigure *F [MaxFigCount];
 	for(int i = 0; i < FigCount; i++)
@@ -197,6 +188,13 @@ CFigure** ApplicationManager::GetFigures()const
 		F[i] = FigList[i];
 	}
 	return F;
+ }
+
+//Add a figure to the list of figures
+void ApplicationManager::AddFigure(CFigure* pFig)
+{
+	if(FigCount < MaxFigCount )
+		FigList[FigCount++] = pFig;	
 }
 
 int ApplicationManager::GetFigureCount ()const
@@ -205,94 +203,23 @@ int ApplicationManager::GetFigureCount ()const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
-//a function to get the area of a triangle
-
-float area(int x1, int y1, int x2, int y2, int x3, int y3) 
-{ 
-   return abs((x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0); 
-} 
-  
-
-////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) 
 {
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
-	CRectangle *R;
-	CTriangle *T;
-	CLine *L;
-	CRhombus *RH;
-	CElipse *E;
+
+	SelectedFig=NULL;
 	
 	for (int i = 0; i < FigCount; i++)
 	{
-		if(dynamic_cast<CRectangle*>(FigList[i]))
-		{	R=dynamic_cast<CRectangle*>(FigList[i]);
-		if((R->GetC1().x>x&&R->GetC2().x<x||R->GetC1().x<x&&R->GetC2().x>x)&&(R->GetC1().y>y&&R->GetC2().y<y||R->GetC1().y<y&&R->GetC2().y>y))
-		{
-			SelectedFig=R;
-		}
-		}
-		if(dynamic_cast<CTriangle*>(FigList[i]))
-		{
-			T=dynamic_cast<CTriangle*>(FigList[i]);
-			float A=area(T->GetV1().x,T->GetV1().y,T->GetV2().x,T->GetV2().y,T->GetV3().x,T->GetV3().y);
-			float A1=area(x,y,T->GetV2().x,T->GetV2().y,T->GetV3().x,T->GetV3().y);
-			float A2=area(T->GetV1().x,T->GetV1().y,x,y,T->GetV3().x,T->GetV3().y);
-			float A3=area(T->GetV1().x,T->GetV1().y,T->GetV2().x,T->GetV2().y,x,y);
-			if(A==(A1+A2+A3))
-			{
-				SelectedFig=T;
-				
-			}
-		}
-
-		if(dynamic_cast<CLine*>(FigList[i]))
-		{	L=dynamic_cast<CLine*>(FigList[i]);
-		float M=L->GetSlope();
-		float C=L->GetTHEC();
-		float H=ceil(M*x+C);
-		if(y==H)
-		{
-			SelectedFig=L;
 		
-		}
-				
-		}
-		if(dynamic_cast<CRhombus*>(FigList[i]))
-		{
-			RH=	dynamic_cast<CRhombus*>(FigList[i]);
-			float A=area(RH->GetCenter().x-100,RH->GetCenter().y,RH->GetCenter().x,RH->GetCenter().y+50,RH->GetCenter().x+100,RH->GetCenter().y)*2;
-			float A1=area(x,y,RH->GetCenter().x,RH->GetCenter().y+50,RH->GetCenter().x+100,RH->GetCenter().y);
-			float A2=area(x,y,RH->GetCenter().x,RH->GetCenter().y+50,RH->GetCenter().x-100,RH->GetCenter().y);
-			float A3=area(x,y,RH->GetCenter().x,RH->GetCenter().y-50,RH->GetCenter().x+100,RH->GetCenter().y);
-			float A4=area(x,y,RH->GetCenter().x,RH->GetCenter().y-50,RH->GetCenter().x-100,RH->GetCenter().y);
-			if(A==(A1+A2+A3+A4))
-			{
-				SelectedFig=RH;
-			
-			}
-
-		}
-
-		if (dynamic_cast<CElipse*>(FigList[i]))
-		{
-			E=dynamic_cast<CElipse*>(FigList[i]);
-			float H=(1.0*(x-E->GetFocus().x)*(x-E->GetFocus().x))/(10000)+(1.0*(y-E->GetFocus().y)*(y-E->GetFocus().y))/(50*50);
-			if(H<=1)
-				{
-					SelectedFig=E;
-					
-				}
-
-		}
-		
-
+		if(FigList[i]->IsInside(x,y))
+			SelectedFig=FigList[i];
 	}
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
 	if(SelectedFig==NULL)
-	return NULL;
+		return NULL;
 	else
 		return SelectedFig;
 }

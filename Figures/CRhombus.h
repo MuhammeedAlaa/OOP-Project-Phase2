@@ -9,6 +9,8 @@ public:
 
 	Point GetCenter();
 	virtual void Draw(Output* pOut) const;
+	float area(int , int , int , int , int , int ) ;
+	virtual bool IsInside(int ,int);
 };
 
 

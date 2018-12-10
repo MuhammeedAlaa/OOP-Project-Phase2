@@ -9,6 +9,6 @@ public:
 	CLine(Point , Point, GfxInfo FigureGfxInfo );
 	float GetSlope();
 	float GetTHEC();
-
 	virtual void Draw(Output* pOut) const;
+	virtual bool IsInside(int ,int);
 };

@@ -25,3 +25,10 @@ float CLine ::GetTHEC()
 	return start.y-start.x*1.0*GetSlope();
 }
 
+bool CLine::IsInside(int x, int y)
+{
+	if(y==floor(x*GetSlope()+GetTHEC()))
+		return true;
+		return false;
+}
+

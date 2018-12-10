@@ -25,6 +25,15 @@ Point CRectangle::GetC2()
 }
 
 
+bool CRectangle::IsInside(int x,int y)
+{
+	if((Corner1.x>x&&Corner2.x<x||Corner1.x<x&&Corner2.x>x)&&(Corner1.y>y&&Corner2.y<y||Corner1.y<y&&Corner2.y>y))
+		{
+			return true;
+		}
+		return false;
+}
+
 
 
 
