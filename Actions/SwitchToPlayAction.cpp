@@ -19,9 +19,9 @@ void SwitchToPlayAction::Execute()
 {
 	ReadActionParameters();
 	Output*pOut	=pManager->GetOutput();	
-				pOut->ClearToolBar();
-				pOut->CreatePlayToolBar();
-				pOut->ClearDrawArea();
+	pOut->ClearToolBar();
+	pOut->CreatePlayToolBar();
+	pOut->ClearDrawArea();
 }
 
 SwitchToPlayAction::~SwitchToPlayAction(void)

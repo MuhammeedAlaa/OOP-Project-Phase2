@@ -5,13 +5,16 @@ class AddTriangleAction:public Action
 {
 private:
 	Point P1, P2,P3; //triangle vertices
-	GfxInfo RectGfxInfo;
+	GfxInfo TriGfxInfo;
 public:
 	public:
 	AddTriangleAction(ApplicationManager *pApp);
 
 	//Reads triangle parameters
 	virtual void ReadActionParameters();
+
+	// to check whether the point was clicked in the drawing area or not
+	bool Pointcheck(Point p);      
 	
 	//Add triangle to the ApplicationManager
 	virtual void Execute() ;

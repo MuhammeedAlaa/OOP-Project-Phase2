@@ -19,8 +19,8 @@ void SwitchToDrawAction:: Execute()
 {
 	ReadActionParameters();
 	Output*pOut	=pManager->GetOutput();	
-				pOut->ClearToolBar();
-				pOut->CreateDrawToolBar();
+	pOut->ClearToolBar();
+	pOut->CreateDrawToolBar();
 }
 
 

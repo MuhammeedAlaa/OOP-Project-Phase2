@@ -7,42 +7,71 @@
 #include "..\GUI\Output.h"
 
 AddLineAction::AddLineAction(ApplicationManager * pApp):Action(pApp)
-{}
+{
+	//this initialization is an indicator that the points weren't taken from the user yet
+	P1.x = 0;
+	P1.y = 0;
+}
+
+bool AddLineAction::Pointcheck(Point p)
+{
+	if(p.y >= UI.ToolBarHeight && p.y < UI.height - UI.StatusBarHeight)
+		return true;
+	return false;
+}
 
 void AddLineAction::ReadActionParameters() 
 {	
-	//Get a Pointer to the Input / Output Interfaces
-	Output* pOut = pManager->GetOutput();
+	//Get a Pointer to the Input/Outpur Interfaces
 	Input* pIn = pManager->GetInput();
+	Output* pOut = pManager->GetOutput();
 
-	pOut->PrintMessage("New line: Click at start");
-	
-	//Read start and store in point P1
-	pIn->GetPointClicked(P1.x, P1.y);
+	//to check if the starting point is zero (first time to call this fuction)	the click should be put in P1
+	if(!P1.x && !P1.y)
+		pIn->GetPointClicked(P1.x, P1.y);
 
-	pOut->PrintMessage("New line: Click at end");
+	// prompt the user for the second corner if the first one is already entered
+	else
+		pIn->GetPointClicked(P2.x, P2.y);
 
-	//Read end and store in point P2
-	pIn->GetPointClicked(P2.x, P2.y);
-
-	RectGfxInfo.isFilled = false;	//default is not filled
+	LineGfxInfo.isFilled = false;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
-	RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
-	RectGfxInfo.FillClr = pOut->getCrntFillColor();
+	LineGfxInfo.DrawClr = pOut->getCrntDrawColor();
+	LineGfxInfo.FillClr = pOut->getCrntFillColor();
 
 	pOut->ClearStatusBar();
+
 
 }
 
 //Execute the action
 void AddLineAction::Execute() 
 {
-	//This action needs to read some parameters first
-	ReadActionParameters();
-	
-	//Create a line with the parameters read from the user
-	CLine *L=new CLine(P1, P2, RectGfxInfo, pManager->GetFigureCount() + 1);
+	//Get a Pointer to the Output Interface
+	Output* pOut = pManager->GetOutput();
 
-	//Add the line to the list of figures
+	pOut->PrintMessage("New Line: Click at the starting point");
+	//Read starting point and store in point P1
+	ReadActionParameters();
+	if (!Pointcheck(P1))
+	{
+		pOut->PrintMessage("Adding Line has terminated, Choose another icon from the tool bar");
+		return;
+	}
+	
+	
+	pOut->PrintMessage("New Line: Click at the end point");
+	//Read 2nd corner and store in point P2
+	ReadActionParameters();
+	if (!Pointcheck(P2))
+	{
+		pOut->PrintMessage("Adding Line has terminated, Choose another icon from the tool bar");
+		return;
+	}
+
+	//Create a rectangle with the parameters read from the user
+	CLine *L=new CLine(P1, P2, LineGfxInfo, pManager->GetFigureCount() + 1);
+
+	//Add the rectangle to the list of figures
 	pManager->AddFigure(L);
 }

@@ -12,6 +12,13 @@ AddEllipseAction::AddEllipseAction(ApplicationManager * pApp):Action(pApp)
 {}
 
 
+bool AddEllipseAction::PointCheck(Point p) 
+{
+	if((p.y-51 >= UI.ToolBarHeight && p.y+51 < UI.height - UI.StatusBarHeight) && (p.x-110 >= 0  && p.x+110< UI.width))
+		return true;
+	return false;
+
+}
 
 void AddEllipseAction::ReadActionParameters() 
 {	
@@ -36,10 +43,18 @@ void AddEllipseAction::ReadActionParameters()
 //Execute the action
 void AddEllipseAction::Execute() 
 {
+	//Get a Pointer to the Output Interface
+	Output* pOut = pManager->GetOutput();
 	//This action needs to read some parameters first
 	ReadActionParameters();
 	
-	//Create a elipse with the parameters read from the user
+	if(!PointCheck(P1))
+	{
+		pOut->PrintMessage("Error you can't draw with this point because the shape will get out of drawing area boundaries, Choose another icon from the toolbar.");
+		return;
+	}
+
+	//Create an ellipse with the parameters read from the user
 	CEllipse *E=new CEllipse(P1, EllpsGfxInfo, pManager->GetFigureCount() + 1);
 	//Add the triangle to the list of figures
 	pManager->AddFigure(E);

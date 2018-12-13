@@ -14,7 +14,7 @@ public:
 
 	//Reads rectangle parameters
 	virtual void ReadActionParameters();
-	
+	bool Pointcheck(Point p);  // to check whether the point was clicked in the drawing area or not 
 	//Add rectangle to the ApplicationManager
 	virtual void Execute() ;
 	

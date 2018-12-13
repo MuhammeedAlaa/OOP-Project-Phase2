@@ -12,6 +12,9 @@ public:
 
 	//Reads Elipse parameters
 	virtual void ReadActionParameters();
+
+	//to check whether the point was clicked in the drawing area or not
+	bool PointCheck(Point p);
 	
 	//Add Elipse to the ApplicationManager
 	virtual void Execute() ;

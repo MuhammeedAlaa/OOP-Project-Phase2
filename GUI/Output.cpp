@@ -167,9 +167,7 @@ void Output::CreatecolorToolBar() const
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::CreatePlayToolBar() const
 {
-	 UI.InterfaceMode = MODE_PLAY;
 	UI.InterfaceMode = MODE_PLAY;
-	
 	//You can draw the tool bar icons in any way you want.
 	//Below is one possible way
 	//First prepare List of images for each menu item
