@@ -1,8 +1,9 @@
 #include "CRhombus.h"
 
 
-CRhombus::CRhombus(Point P1, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
+CRhombus::CRhombus(Point P1, GfxInfo FigureGfxInfo, int id):CFigure(FigureGfxInfo)
 {
+	ID = id;
 	center = P1;
 	
 }
@@ -35,4 +36,9 @@ bool CRhombus::IsInside(int x, int y)
 			if(A==(A1+A2+A3+A4))
 			 return true ;
 			return false;
+}
+
+void CRhombus::PrintInfo(Output* pOut)
+{
+	pOut->PrintMessage("The Rhombus ID is "+to_string(ID)+", Center is at("+to_string(center.x)+", "+to_string(center.y)+"), Height is 100, Width is 200.");
 }

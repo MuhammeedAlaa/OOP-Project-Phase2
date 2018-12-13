@@ -41,7 +41,7 @@ void AddLineAction::Execute()
 	ReadActionParameters();
 	
 	//Create a line with the parameters read from the user
-	CLine *L=new CLine(P1, P2, RectGfxInfo);
+	CLine *L=new CLine(P1, P2, RectGfxInfo, pManager->GetFigureCount() + 1);
 
 	//Add the line to the list of figures
 	pManager->AddFigure(L);

@@ -49,7 +49,7 @@ void AddTriangleAction::Execute()
 	ReadActionParameters();
 	
 	//Create a triangle with the parameters read from the user
-	CTriangle *T=new CTriangle(P1, P2, P3, RectGfxInfo);
+	CTriangle *T=new CTriangle(P1, P2, P3, RectGfxInfo, pManager->GetFigureCount() + 1);
 
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);

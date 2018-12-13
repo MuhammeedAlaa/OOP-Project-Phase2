@@ -36,7 +36,7 @@ void AddRhombusAction::Execute()
 	ReadActionParameters();
 	
 	//Create a Rhombus with the parameters read from the user
-	CRhombus *R=new CRhombus(P1, RectGfxInfo);
+	CRhombus *R=new CRhombus(P1, RectGfxInfo, pManager->GetFigureCount() + 1);
 
 	//Add the Rhombus to the list of figures
 	pManager->AddFigure(R);

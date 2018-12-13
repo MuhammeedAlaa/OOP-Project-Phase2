@@ -24,13 +24,15 @@ void SelectAction::ReadActionParameters()
 //Execute the action
 void SelectAction::Execute() 
 {
-
+	Output* pOut = pManager->GetOutput();
 	//This action needs to read some parameters first
 	ReadActionParameters();
-
-		if(this->pManager->GetFigure(Select.x,Select.y))
-	this->pManager->GetFigure(Select.x,Select.y)->SetSelected(true);
-		this->pManager->UpdateInterface();
+	if(this->pManager->GetFigure(Select.x,Select.y))
+	{
+		this->pManager->GetFigure(Select.x,Select.y)->SetSelected(true);
+		this->pManager->GetFigure(Select.x,Select.y)->PrintInfo(pOut);
+	}
+	
 }
 
 

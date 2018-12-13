@@ -9,6 +9,7 @@
 #include "Actions\SelectAction.h"
 #include "Actions\SwitchToDrawAction.h"
 #include "Actions\SwitchToPlayAction.h"
+#include "Actions\DeleteAction.h"
 #include <cstdlib>
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -153,7 +154,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				pOut->PrintMessage("Action: a Click on Pick by color, Click anywhere");
 				break;
 		case DEL:
-				pOut->PrintMessage("Action: a Click on Delete, Click anywhere");
+				pAct = new DeleteAction(this); 
 				break;
 		case EMPTY:
 				pOut->PrintMessage("Action: a click on empty area in the Design Tool Bar, Click anywhere");
@@ -180,22 +181,46 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //						Figures Management Functions								//
 //==================================================================================//
 
- CFigure** ApplicationManager::GetFigures()const
+// to get a copy of the figure list	for play mode
+ CFigure** ApplicationManager::GetFigures()
 {
-	CFigure *F [MaxFigCount];
+	/*CFigure *F [MaxFigCount];
 	for(int i = 0; i < FigCount; i++)
 	{
 		F[i] = FigList[i];
-	}
-	return F;
+	}*/
+	return FigList;
  }
 
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if(FigCount < MaxFigCount )
-		FigList[FigCount++] = pFig;	
+		FigList[FigCount++] = pFig;
+
 }
+
+//delete a figure from the list
+void ApplicationManager::DeleteFigure(CFigure* DelFig)
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		if(DelFig == FigList[i])
+		{	
+			delete FigList[i];
+			for (i ; i < FigCount - 1; i++)
+			{
+				FigList[i] = FigList[i+1];
+			}
+			FigList[FigCount - 1] = NULL;
+			FigCount--;
+			UpdateInterface();
+			return;
+		}
+	}
+}
+
+
 
 int ApplicationManager::GetFigureCount ()const
 {
@@ -212,9 +237,9 @@ CFigure *ApplicationManager::GetFigure(int x, int y)
 	
 	for (int i = 0; i < FigCount; i++)
 	{
-		
-		if(FigList[i]->IsInside(x,y))
-			SelectedFig=FigList[i];
+		if(FigList[i] != NULL)
+			if(FigList[i]->IsInside(x,y))
+				SelectedFig=FigList[i];
 	}
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
@@ -230,8 +255,12 @@ CFigure *ApplicationManager::GetFigure(int x, int y)
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
 {	
+	pOut->ClearDrawArea();
 	for(int i=0; i<FigCount; i++)
+	{	if(!FigList[i])
+			continue;
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

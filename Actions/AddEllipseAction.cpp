@@ -40,8 +40,7 @@ void AddEllipseAction::Execute()
 	ReadActionParameters();
 	
 	//Create a elipse with the parameters read from the user
-	CElipse *E=new CElipse(P1, EllpsGfxInfo);
-
+	CEllipse *E=new CEllipse(P1, EllpsGfxInfo, pManager->GetFigureCount() + 1);
 	//Add the triangle to the list of figures
 	pManager->AddFigure(E);
 }

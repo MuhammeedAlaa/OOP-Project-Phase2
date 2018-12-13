@@ -1,14 +1,11 @@
-﻿Build started 10/12/2018 09:59:20 م.
+﻿Build started 13/12/2018 09:15:32 م.
      1>Project "E:\Projects\new repo\OOP-Project-Phase2\PT-Project.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         E:\new visual studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt Actions\PickTypeAction.cpp
-         PickTypeAction.cpp
-     1>e:\projects\new repo\oop-project-phase2\actions\picktypeaction.cpp(49): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-       Link:
+     1>Link:
          E:\new visual studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug/PT Project.exe" /INCREMENTAL /NOLOGO odbc32.lib odbccp32.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug/PT Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\PT Project.lib" /MACHINE:X86 /SAFESEH .\Debug/AddEllipseAction.obj
          .\Debug/AddLineAction.obj
          .\Debug/AddRhomAction.obj
          .\Debug/AddTriAction.obj
+         .\Debug/DeleteAction.obj
          .\Debug/ExitAction.obj
          .\Debug/PickTypeAction.obj
          .\Debug/SelectAction.obj
@@ -61,11 +58,12 @@
          .\Debug/Output.obj
          .\Debug/ApplicationManager.obj
          .\Debug/main.obj
+     1>AddEllipseAction.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
          PT-Project.vcxproj -> E:\Projects\new repo\OOP-Project-Phase2\.\Debug\PT Project.exe
        BscMake:
-         E:\new visual studio\VC\bin\bscmake.exe /nologo /o".\Debug/PT Project.bsc" .\Debug\AddEllipseAction.sbr .\Debug\AddLineAction.sbr .\Debug\AddRhomAction.sbr .\Debug\AddTriAction.sbr .\Debug\ExitAction.sbr .\Debug\PickTypeAction.sbr .\Debug\SelectAction.sbr .\Debug\SwitchToDrawAction.sbr .\Debug\SwitchToPlayAction.sbr .\Debug\auxil.sbr .\Debug\CMUgraphics.sbr .\Debug\colors.sbr .\Debug\image.sbr .\Debug\jpegload.sbr .\Debug\keyqueue.sbr .\Debug\mousequeue.sbr .\Debug\windowinput.sbr .\Debug\jcomapi.sbr .\Debug\jcparam.sbr .\Debug\jdapimin.sbr .\Debug\jdapistd.sbr .\Debug\jdatasrc.sbr .\Debug\jdcoefct.sbr .\Debug\jdcolor.sbr .\Debug\jddctmgr.sbr .\Debug\jdhuff.sbr .\Debug\jdinput.sbr .\Debug\jdmainct.sbr .\Debug\jdmarker.sbr .\Debug\jdmaster.sbr .\Debug\jdmerge.sbr .\Debug\jdphuff.sbr .\Debug\jdpostct.sbr .\Debug\jdsample.sbr .\Debug\jdtrans.sbr .\Debug\jerror.sbr .\Debug\jidctflt.sbr .\Debug\jidctfst.sbr .\Debug\jidctint.sbr .\Debug\jidctred.sbr .\Debug\jmemmgr.sbr .\Debug\jmemnobs.sbr .\Debug\jquant1.sbr .\Debug\jquant2.sbr .\Debug\jutils.sbr .\Debug\CEllipse.sbr .\Debug\CFigure.sbr .\Debug\CLine.sbr .\Debug\CRectangle.sbr .\Debug\AddRectAction.sbr .\Debug\CRhombus.sbr .\Debug\CTriangle.sbr .\Debug\Input.sbr .\Debug\Output.sbr .\Debug\ApplicationManager.sbr .\Debug\main.sbr
+         E:\new visual studio\VC\bin\bscmake.exe /nologo /o".\Debug/PT Project.bsc" .\Debug\AddEllipseAction.sbr .\Debug\AddLineAction.sbr .\Debug\AddRhomAction.sbr .\Debug\AddTriAction.sbr .\Debug\DeleteAction.sbr .\Debug\ExitAction.sbr .\Debug\PickTypeAction.sbr .\Debug\SelectAction.sbr .\Debug\SwitchToDrawAction.sbr .\Debug\SwitchToPlayAction.sbr .\Debug\auxil.sbr .\Debug\CMUgraphics.sbr .\Debug\colors.sbr .\Debug\image.sbr .\Debug\jpegload.sbr .\Debug\keyqueue.sbr .\Debug\mousequeue.sbr .\Debug\windowinput.sbr .\Debug\jcomapi.sbr .\Debug\jcparam.sbr .\Debug\jdapimin.sbr .\Debug\jdapistd.sbr .\Debug\jdatasrc.sbr .\Debug\jdcoefct.sbr .\Debug\jdcolor.sbr .\Debug\jddctmgr.sbr .\Debug\jdhuff.sbr .\Debug\jdinput.sbr .\Debug\jdmainct.sbr .\Debug\jdmarker.sbr .\Debug\jdmaster.sbr .\Debug\jdmerge.sbr .\Debug\jdphuff.sbr .\Debug\jdpostct.sbr .\Debug\jdsample.sbr .\Debug\jdtrans.sbr .\Debug\jerror.sbr .\Debug\jidctflt.sbr .\Debug\jidctfst.sbr .\Debug\jidctint.sbr .\Debug\jidctred.sbr .\Debug\jmemmgr.sbr .\Debug\jmemnobs.sbr .\Debug\jquant1.sbr .\Debug\jquant2.sbr .\Debug\jutils.sbr .\Debug\CEllipse.sbr .\Debug\CFigure.sbr .\Debug\CLine.sbr .\Debug\CRectangle.sbr .\Debug\AddRectAction.sbr .\Debug\CRhombus.sbr .\Debug\CTriangle.sbr .\Debug\Input.sbr .\Debug\Output.sbr .\Debug\ApplicationManager.sbr .\Debug\main.sbr
      1>Done Building Project "E:\Projects\new repo\OOP-Project-Phase2\PT-Project.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:03.20
+Time Elapsed 00:00:02.25

@@ -1,10 +1,11 @@
 #include "CRectangle.h"
 
-CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
+CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo, int id):CFigure(FigureGfxInfo)
 {
 	
 	Corner1 = P1;
 	Corner2 = P2;
+	ID = id;
 }
 	
 
@@ -34,7 +35,10 @@ bool CRectangle::IsInside(int x,int y)
 		return false;
 }
 
-
+void CRectangle::PrintInfo(Output* pOut)
+{
+	pOut->PrintMessage("The Rectangle ID is "+to_string(ID)+",  height is "+to_string(abs(Corner1.y-Corner2.y))+", Width is "+to_string(abs(Corner1.x-Corner2.x))+".");
+}
 
 
 

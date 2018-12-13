@@ -1,13 +1,14 @@
 #pragma once
 #include "CFigure.h"
-class CElipse:public CFigure
+class CEllipse:public CFigure
 {
 private:
-	Point focus;
+	Point Center;
 public:
-	CElipse(Point ,GfxInfo FigureGfxInfo);
+	CEllipse(Point ,GfxInfo FigureGfxInfo, int id);
 
-	Point GetFocus();
+	Point GetCenter();
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int ,int);
+	void PrintInfo(Output* pOut);
 };

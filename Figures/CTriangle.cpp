@@ -1,8 +1,9 @@
 #include "CTriangle.h"
 
 
-CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
+CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo, int id):CFigure(FigureGfxInfo)
 {
+	ID = id;
 	vertix1 = P1;
 	vertix2 = P2;
 	vertix3 = P3;
@@ -50,6 +51,11 @@ bool CTriangle:: IsInside(int x,int y)
 
 
 
+}
+
+void CTriangle::PrintInfo(Output* pOut)
+{
+	pOut->PrintMessage("The Triangle ID is "+to_string(ID)+", corners are at ("+to_string(vertix1.x)+", "+to_string(vertix1.y)+")  ("+to_string(vertix2.x)+", "+to_string(vertix2.y)+")  ("+to_string(vertix3.x)+", "+to_string(vertix3.y)+").");
 }
 
 

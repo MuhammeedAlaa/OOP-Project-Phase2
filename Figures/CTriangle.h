@@ -9,7 +9,7 @@ private:
 	Point vertix2;
 	Point vertix3;
 public:
-	CTriangle(Point , Point, Point, GfxInfo FigureGfxInfo );
+	CTriangle(Point , Point, Point, GfxInfo FigureGfxInfo, int id);
 	Point GetV1();
 	Point GetV2();
 	Point GetV3();
@@ -17,6 +17,8 @@ public:
 	virtual void Draw(Output* pOut) const;
 	float area(int , int , int , int , int , int ) ;
 	virtual bool IsInside(int ,int);
+	void PrintInfo(Output* pOut);
+
 };
 
 
