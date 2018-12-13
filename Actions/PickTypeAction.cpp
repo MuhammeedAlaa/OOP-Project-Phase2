@@ -29,7 +29,8 @@ void PickTypeAction::ReadActionParameters()
 
 }
 
-void PickTypeAction::HideFigure(CFigure** list, CFigure* ShapePtr, int size)
+// function to make the picked figure's pointer point to null so it's not drawn this wasn't made a member fuction in order not to include CFigure in the header of the class 
+void HideFigure(CFigure** list, CFigure* ShapePtr, int size)
 {
 	for (int i = 0; i < size; i++)
 	{
@@ -132,7 +133,9 @@ void PickTypeAction::Execute()
 	for (int i = 0; i < pManager->GetFigureCount(); i++)
 	{	
 		ReadActionParameters();
-		if(!HIDE.y)		{			pOut->PrintMessage("Pick by type has terminated, Please choose an icon from the tool bar.");			return;
+		if(!HIDE.y)
+		{
+			break;
 		}
 		CFigure* PickedFigure = pManager->GetFigure(HIDE.x, HIDE.y);
 		if(dynamic_cast<CRectangle*>(PickedFigure) && RandShapeType == Rectangle)
@@ -173,6 +176,10 @@ void PickTypeAction::Execute()
 			ShapeCount--;
 			pOut->PrintMessage("Well done!");
 		}
+		else if(PickedFigure == NULL)
+		{
+			pOut->PrintMessage("You should pick all the existing figures of the type specified.");
+		}
 		else
 		{
 			pOut->PrintMessage("Wrong shape picked");
@@ -187,9 +194,14 @@ void PickTypeAction::Execute()
 		
 
 	}
-	pOut->PrintMessage("number of wrong picks : " + to_string(WrongCount)+"   number of right picks : " + to_string(RightCount) + ", Press anywhere to continue");
-	ReadActionParameters();	 // picked figure in this line is found but not necessary but i used this function inorder not to declare another variable of type input
-	pOut->ClearStatusBar();
+	if(HIDE.y)
+	{
+		pOut->PrintMessage("number of wrong picks : " + to_string(WrongCount)+"   number of right picks : " + to_string(RightCount) + ", Press anywhere to continue");
+		ReadActionParameters();	 // picked figure in this line is found but not necessary but i used this function inorder not to declare another variable of type input
+		pOut->ClearStatusBar();
+	}
+	else
+		pOut->PrintMessage("Pick by type has terminated, Please choose an icon from the tool bar.");
 
 	for (int i = 0; i < InitFigCnt; i++)
 	{

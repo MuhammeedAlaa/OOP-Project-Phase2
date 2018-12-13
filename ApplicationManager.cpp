@@ -43,7 +43,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	for (int i = 0; i < FigCount; i++)
 	{
 		if(FigList[i]->IsSelected())
+		{
 			FigList[i]->SetSelected(false);
+			UpdateInterface();
+		}
 	}
 
 

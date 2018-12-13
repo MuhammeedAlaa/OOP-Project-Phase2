@@ -13,8 +13,6 @@ public:
 	//Reads triangle parameters
 	virtual void ReadActionParameters();
 
-	// to check whether the point was clicked in the drawing area or not
-	bool Pointcheck(Point p);      
 	
 	//Add triangle to the ApplicationManager
 	virtual void Execute() ;

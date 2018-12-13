@@ -13,12 +13,7 @@ AddLineAction::AddLineAction(ApplicationManager * pApp):Action(pApp)
 	P1.y = 0;
 }
 
-bool AddLineAction::Pointcheck(Point p)
-{
-	if(p.y >= UI.ToolBarHeight && p.y < UI.height - UI.StatusBarHeight)
-		return true;
-	return false;
-}
+
 
 void AddLineAction::ReadActionParameters() 
 {	

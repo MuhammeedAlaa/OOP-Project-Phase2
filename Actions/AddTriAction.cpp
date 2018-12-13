@@ -15,12 +15,6 @@ AddTriangleAction::AddTriangleAction(ApplicationManager * pApp):Action(pApp)
 	P2.y = 0;
 }
 
-bool AddTriangleAction::Pointcheck(Point p)
-{
-	if(p.y >= UI.ToolBarHeight && p.y < UI.height - UI.StatusBarHeight)
-		return true;
-	return false;
-}
 
 void AddTriangleAction::ReadActionParameters() 
 {	

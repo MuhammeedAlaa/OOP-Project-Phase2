@@ -10,8 +10,7 @@ public:
 	AddLineAction(ApplicationManager *pApp);
 
 	//Reads line parameters
-	virtual void ReadActionParameters();
-	bool Pointcheck(Point p);  // to check whether the point was clicked in the drawing area or not 
+	virtual void ReadActionParameters();   
 	//Add line to the ApplicationManager
 	virtual void Execute() ;
 			
