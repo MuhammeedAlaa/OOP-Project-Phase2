@@ -14,6 +14,7 @@ public:
 	Point GetC2();
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int ,int);
+	virtual int GetFillColor();
 	void PrintInfo(Output* pOut);
 
 

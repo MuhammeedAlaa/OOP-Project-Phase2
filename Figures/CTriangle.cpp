@@ -31,7 +31,7 @@ Point CTriangle::GetV3()
 	return vertix3;
 }
 
-float CTriangle::area(int x1, int y1, int x2, int y2, int x3, int y3) 
+double CTriangle::area(int x1, int y1, int x2, int y2, int x3, int y3) 
 { 
    return abs((x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0); 
 }
@@ -50,6 +50,22 @@ bool CTriangle:: IsInside(int x,int y)
 			return false;
 
 
+
+}
+
+int CTriangle::GetFillColor()
+{
+	if(FigGfxInfo.isFilled == false)
+		return 15;
+	if(FigGfxInfo.FillClr == BLACK)
+		return CBLACK;
+	if(FigGfxInfo.FillClr == RED)
+		return CRED;
+	if(FigGfxInfo.FillClr == GREEN)
+		return CGREEN;
+	if(FigGfxInfo.FillClr == WHITE)
+		return CWHITE;
+	return CBLUE;
 
 }
 

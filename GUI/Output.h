@@ -21,10 +21,10 @@ public:
 	void createcolorwindow() ;
 	// -- Figures Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a rectangle
-	void DrawLine(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a line
-	void DrawTri(Point P1, Point P2, Point P3, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a triangle
-	void DrawElipse(Point P1, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a triangle
-	void DrawRhombus(Point P1, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a triangle
+	void DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected=false) const;  //Draw a line
+	void DrawTri(Point P1, Point P2, Point P3, GfxInfo TriGfxInfo, bool selected=false) const;  //Draw a triangle
+	void DrawElipse(Point P1, GfxInfo EllipseGfxInfo, bool selected=false) const;  //Draw a triangle
+	void DrawRhombus(Point P1, GfxInfo RhombusGfxInfo, bool selected=false) const;  //Draw a triangle
 	
 	///Make similar functions for drawing all other figure types.
 	

@@ -5,11 +5,14 @@
 #include "Actions\AddLineAction.h"
 #include "Actions\AddRhomAction.h"
 #include "Actions\PickTypeAction.h"
+#include "Actions\PickColorAction.h"
 #include "Actions\ExitAction.h"
 #include "Actions\SelectAction.h"
 #include "Actions\SwitchToDrawAction.h"
 #include "Actions\SwitchToPlayAction.h"
 #include "Actions\DeleteAction.h"
+#include "Actions\ChngDrwClrAction.h"
+#include "Actions\ChngFilClrAction.h"
 #include <cstdlib>
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -17,7 +20,7 @@ ApplicationManager::ApplicationManager()
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
-	
+	SelectedFig = NULL;
 	FigCount = 0;
 		
 	//Create an array of figure pointers and set them to NULL		
@@ -40,14 +43,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	Action* pAct = NULL;
 	
 	//According to Action Type, create the corresponding action object
-	for (int i = 0; i < FigCount; i++)
-	{
-		if(FigList[i]->IsSelected())
+	if(ActType != DRAW_Todrawcolor && ActType != DRAW_TOfill && ActType != DEL && ActType != SELECT)
+		for (int i = 0; i < FigCount; i++)
 		{
-			FigList[i]->SetSelected(false);
-			UpdateInterface();
+			if(FigList[i]->IsSelected())
+			{
+				SelectedFig = NULL;
+				FigList[i]->SetSelected(false);
+				UpdateInterface();
+			}
 		}
-	}
 
 
 	switch (ActType)
@@ -113,48 +118,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				break;
 
 		case DRAW_Todrawcolor:
-				pOut->PrintMessage("Action: to select a drawing  color  , Click anywhere");
-				pOut->ClearToolBar() ;
-				pOut->CreatecolorToolBar() ;
+				pAct = new ChngDrwClrAction(this);
 				break ;
 
 		case DRAW_TOfill:
-				pOut->PrintMessage("Action: to select a fill  color  , Click anywhere");
-				pOut->ClearToolBar() ;
-				pOut->CreatecolorToolBar() ;
+				pAct = new ChngFilClrAction(this);
 				break ;
 
-		case DRAW_RED:
-				pOut->PrintMessage("Action: a Click on Red Color, Click anywhere");
-				pOut->CreateDrawToolBar() ;
-				break;
-
-		case DRAW_WHITE:
-				pOut->PrintMessage("Action: a Click on White Color, Click anywhere");
-					pOut->CreateDrawToolBar() ;
-				break;
-
-		case DRAW_BLACK:
-				pOut->PrintMessage("Action: a Click on Black Color, Click anywhere");
-				pOut->CreateDrawToolBar() ;
-				break;
-
-		case DRAW_BLUE:						  
-				pOut->PrintMessage("Action: a Click on Blue Color, Click anywhere");
-				pOut->CreateDrawToolBar() ;
-				break;
-
-		case DRAW_GREEN:
-				pOut->PrintMessage("Action: a Click on Green Color, Click anywhere");
-				pOut->CreateDrawToolBar() ;
-				break;
-
 		case PICKTYPE:	
-				pOut->PrintMessage("Action: a Click on Pick by type, Click anywhere");
 				pAct=new PickTypeAction (this);
 				break;
 		case PICKCOLOR:
-				pOut->PrintMessage("Action: a Click on Pick by color, Click anywhere");
+				pAct=new PickColorAction (this);
 				break;
 		case DEL:
 				pAct = new DeleteAction(this); 
@@ -167,7 +142,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			///create ExitAction here
 				pAct=new ExitAction(this);			
 				break;
-		
+		case DRAWING_AREA:
+			
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
@@ -184,14 +160,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //						Figures Management Functions								//
 //==================================================================================//
 
-// to get a copy of the figure list	for play mode
+// to get the figure list	for play mode
  CFigure** ApplicationManager::GetFigures()
 {
-	/*CFigure *F [MaxFigCount];
-	for(int i = 0; i < FigCount; i++)
-	{
-		F[i] = FigList[i];
-	}*/
 	return FigList;
  }
 
@@ -203,14 +174,22 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 
 }
 
-//delete a figure from the list
-void ApplicationManager::DeleteFigure(CFigure* DelFig)
+// to get the selected figure to change its color
+CFigure* ApplicationManager::GetSelected()
+{
+	return SelectedFig;
+}
+
+
+//delete a figure from the list, it had to be implemented here because deleting a figure has effect on the figure list and only the app manager has access to it
+void ApplicationManager::DeleteFigure()
 {
 	for (int i = 0; i < FigCount; i++)
 	{
-		if(DelFig == FigList[i])
+		if(SelectedFig == FigList[i])
 		{	
 			delete FigList[i];
+			SelectedFig = NULL;
 			for (i ; i < FigCount - 1; i++)
 			{
 				FigList[i] = FigList[i+1];
@@ -244,12 +223,11 @@ CFigure *ApplicationManager::GetFigure(int x, int y)
 			if(FigList[i]->IsInside(x,y))
 				SelectedFig=FigList[i];
 	}
+
+	return SelectedFig;
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
-	if(SelectedFig==NULL)
-		return NULL;
-	else
-		return SelectedFig;
+		
 }
 //==================================================================================//
 //							Interface Management Functions							//

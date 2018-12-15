@@ -35,6 +35,22 @@ bool CRectangle::IsInside(int x,int y)
 		return false;
 }
 
+int CRectangle::GetFillColor()
+{
+	if(FigGfxInfo.isFilled == false)
+		return 15;
+	if(FigGfxInfo.FillClr == BLACK)
+		return CBLACK;
+	if(FigGfxInfo.FillClr == RED)
+		return CRED;
+	if(FigGfxInfo.FillClr == GREEN)
+		return CGREEN;
+	if(FigGfxInfo.FillClr == WHITE)
+		return CWHITE;
+	return CBLUE;
+
+}
+
 void CRectangle::PrintInfo(Output* pOut)
 {
 	pOut->PrintMessage("The Rectangle ID is "+to_string(ID)+",  height is "+to_string(abs(Corner1.y-Corner2.y))+", Width is "+to_string(abs(Corner1.x-Corner2.x))+".");

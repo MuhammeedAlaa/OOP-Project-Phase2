@@ -30,8 +30,10 @@ void AddEllipseAction::ReadActionParameters()
 	
 	//Read Center and store in point P1
 	pIn->GetPointClicked(P1.x, P1.y);
-
-	EllpsGfxInfo.isFilled = false;	//default is not filled
+	if(UI.FillColor == OLDLACE)
+		EllpsGfxInfo.isFilled = false;	//default is not filled
+	else 
+		EllpsGfxInfo.isFilled = true;
 	//get drawing, filling colors and pen width from the interface
 	EllpsGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	EllpsGfxInfo.FillClr = pOut->getCrntFillColor();

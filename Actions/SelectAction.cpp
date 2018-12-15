@@ -27,10 +27,12 @@ void SelectAction::Execute()
 	Output* pOut = pManager->GetOutput();
 	//This action needs to read some parameters first
 	ReadActionParameters();
-	if(this->pManager->GetFigure(Select.x,Select.y))
+	if(pManager->GetSelected())
+		pManager->GetSelected()->SetSelected(false);
+	if(pManager->GetFigure(Select.x,Select.y))
 	{
-		this->pManager->GetFigure(Select.x,Select.y)->SetSelected(true);
-		this->pManager->GetFigure(Select.x,Select.y)->PrintInfo(pOut);
+		pManager->GetFigure(Select.x,Select.y)->SetSelected(true);
+		pManager->GetFigure(Select.x,Select.y)->PrintInfo(pOut);
 	}
 	
 }
@@ -39,5 +41,4 @@ void SelectAction::Execute()
 
 SelectAction::~SelectAction(void)
 {	
-	delete this;
 }

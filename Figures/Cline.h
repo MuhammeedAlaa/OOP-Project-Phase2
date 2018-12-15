@@ -7,10 +7,11 @@ private:
 	Point end;
 public:
 	CLine(Point , Point, GfxInfo FigureGfxInfo, int id);
-	float GetSlope();
-	float GetTHEC();
+	double GetSlope();
+	double GetTHEC();
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int ,int);
+	virtual int GetFillColor();
 	void PrintInfo(Output* pOut);
 
 };

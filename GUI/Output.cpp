@@ -17,7 +17,7 @@ Output::Output()
 	UI.MenuItemWidth = 70;
 	
 	UI.DrawColor = BLUE;	//Drawing color
-	UI.FillColor = GREEN;	//Filling color
+	UI.FillColor = OLDLACE;	//Filling color
 	UI.MsgColor = RED;		//Messages color
 	UI.BkGrndColor = LIGHTGOLDENRODYELLOW;	//Background color
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
@@ -251,41 +251,34 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	
 }
 /////////////////////////////////////////////////////////////////////////////
-void Output:: DrawLine(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const{
+void Output:: DrawLine(Point P1, Point P2, GfxInfo LINEGfxInfo, bool selected) const{
 	color DrawingClr;
 	if(selected)	
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else			
-		DrawingClr = RectGfxInfo.DrawClr;
+		DrawingClr = LINEGfxInfo.DrawClr;
 	
 	pWind->SetPen(DrawingClr,1);
-	drawstyle style;
-	if (RectGfxInfo.isFilled)	
-	{
-		style = FILLED;		
-		pWind->SetBrush(RectGfxInfo.FillClr);
-	}
-	else	
-		style = FRAME;
+	drawstyle style = FRAME;	
 
 	
 	pWind->DrawLine(P1.x, P1.y, P2.x, P2.y, style);
 	
 }
 /////////////////////////////////////////////////////////////////////////////
-void Output:: DrawTri(Point P1, Point P2,Point P3, GfxInfo RectGfxInfo, bool selected) const{
+void Output:: DrawTri(Point P1, Point P2,Point P3, GfxInfo TRIGfxInfo, bool selected) const{
 	color DrawingClr;
 	if(selected)	
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else			
-		DrawingClr = RectGfxInfo.DrawClr;
+		DrawingClr = TRIGfxInfo.DrawClr;
 	
 	pWind->SetPen(DrawingClr,1);
 	drawstyle style;
-	if (RectGfxInfo.isFilled)	
+	if (TRIGfxInfo.isFilled)	
 	{
 		style = FILLED;		
-		pWind->SetBrush(RectGfxInfo.FillClr);
+		pWind->SetBrush(TRIGfxInfo.FillClr);
 	}
 	else	
 		style = FRAME;
@@ -295,40 +288,40 @@ void Output:: DrawTri(Point P1, Point P2,Point P3, GfxInfo RectGfxInfo, bool sel
 	
 }
 /////////////////////////////////////////////////////////////////////////////
-void Output:: DrawElipse(Point P1, GfxInfo RectGfxInfo, bool selected) const
+void Output:: DrawElipse(Point P1, GfxInfo ELPSGfxInfo, bool selected) const
 {
 	color DrawingClr;
 	if(selected)	
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else			
-		DrawingClr = RectGfxInfo.DrawClr;
+		DrawingClr = ELPSGfxInfo.DrawClr;
 	
 	pWind->SetPen(DrawingClr,1);
 	drawstyle style;
-	if (RectGfxInfo.isFilled)	
+	if (ELPSGfxInfo.isFilled)	
 	{
 		style = FILLED;		
-		pWind->SetBrush(RectGfxInfo.FillClr);
+		pWind->SetBrush(ELPSGfxInfo.FillClr);
 	}
 	else	
 		style = FRAME;
 	pWind->DrawEllipse(P1.x+100, P1.y+50, P1.x-100, P1.y-50, style);
 }
 ////////////////////////////////////////////////////////////////////////////
-void Output:: DrawRhombus(Point P1, GfxInfo RectGfxInfo, bool selected) const
+void Output:: DrawRhombus(Point P1, GfxInfo RhomGfxInfo, bool selected) const
 {
 	color DrawingClr;
 	if(selected)	
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else			
-		DrawingClr = RectGfxInfo.DrawClr;
+		DrawingClr = RhomGfxInfo.DrawClr;
 	
 	pWind->SetPen(DrawingClr,1);
 	drawstyle style;
-	if (RectGfxInfo.isFilled)	
+	if (RhomGfxInfo.isFilled)	
 	{
 		style = FILLED;		
-		pWind->SetBrush(RectGfxInfo.FillClr);
+		pWind->SetBrush(RhomGfxInfo.FillClr);
 	}
 	else	
 		style = FRAME;

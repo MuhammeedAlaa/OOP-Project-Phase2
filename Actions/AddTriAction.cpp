@@ -33,8 +33,10 @@ void AddTriangleAction::ReadActionParameters()
 	// prompt the user for the third vertex if the first and second one are already entered
 	else
 		pIn->GetPointClicked(P3.x, P3.y);
-
-	TriGfxInfo.isFilled = false;	//default is not filled
+	if(UI.FillColor == OLDLACE)
+		TriGfxInfo.isFilled = false;	//default is not filled
+	else 
+		TriGfxInfo.isFilled = true;
 	//get drawing, filling colors and pen width from the interface
 	TriGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	TriGfxInfo.FillClr = pOut->getCrntFillColor();

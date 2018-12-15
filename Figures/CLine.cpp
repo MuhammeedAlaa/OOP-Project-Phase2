@@ -16,12 +16,12 @@ void CLine::Draw(Output* pOut) const
 }
 
 
-float CLine::GetSlope()
+double CLine::GetSlope()
 {
-	float slope=(1.0*start.y-end.y)/(1.0*start.x-end.x);
+	double slope=(1.0*start.y-end.y)/(1.0*start.x-end.x);
 	return slope;
 }
-float CLine ::GetTHEC()
+double CLine ::GetTHEC()
 {
 	return start.y-start.x*1.0*GetSlope();
 }
@@ -32,6 +32,11 @@ bool CLine::IsInside(int x, int y)
 	if(((y<=floor(yline)&& y >= floor(yline) - 7) || (y>=ceil(yline) && y <= ceil(yline) + 7)))
 		return true;
 		return false;
+}
+
+int CLine::GetFillColor()
+{
+		return 15;
 }
 
 void CLine::PrintInfo(Output* pOut)

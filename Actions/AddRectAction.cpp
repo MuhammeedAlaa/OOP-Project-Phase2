@@ -27,8 +27,10 @@ void AddRectAction::ReadActionParameters()
 	// prompt the user for the second corner if the first one is already entered
 	else
 		pIn->GetPointClicked(P2.x, P2.y);
-
-	RectGfxInfo.isFilled = false;	//default is not filled
+	if(UI.FillColor == OLDLACE)
+		RectGfxInfo.isFilled = false;	//default is not filled
+	else 
+		RectGfxInfo.isFilled = true;
 	//get drawing, filling colors and pen width from the interface
 	RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	RectGfxInfo.FillClr = pOut->getCrntFillColor();

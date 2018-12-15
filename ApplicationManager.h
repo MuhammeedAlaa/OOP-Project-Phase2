@@ -37,10 +37,11 @@ public:
 	
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
-	void DeleteFigure(CFigure* DelFig);
+	void DeleteFigure();				   // deletes the selected figure
 	CFigure *GetFigure(int x, int y) ; //Search for a figure given a point inside the figure
 	int GetFigureCount()const;		 // get the actual number of figures
-	CFigure ** GetFigures();	  // get a copy of the figure list 
+	CFigure ** GetFigures();	  // get a copy of the figure list
+	CFigure* GetSelected();
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

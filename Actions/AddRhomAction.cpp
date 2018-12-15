@@ -18,8 +18,10 @@ void AddRhombusAction::ReadActionParameters()
 	
 	//Read center and store in point P1
 	pIn->GetPointClicked(P1.x, P1.y);
-
-	RhomGfxInfo.isFilled = false;	//default is not filled
+	if(UI.FillColor == OLDLACE)
+		RhomGfxInfo.isFilled = false;	//default is not filled
+	else
+		RhomGfxInfo.isFilled = true;
 	//get drawing, filling colors and pen width from the interface
 	RhomGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	RhomGfxInfo.FillClr = pOut->getCrntFillColor();

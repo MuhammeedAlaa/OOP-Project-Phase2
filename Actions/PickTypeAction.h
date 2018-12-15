@@ -7,7 +7,7 @@ class PickTypeAction:public Action
 
 public:
 	PickTypeAction(ApplicationManager *);
-	void ReadActionParameters();
+	virtual void ReadActionParameters();
 	virtual void Execute();
 	~PickTypeAction(void);
 };

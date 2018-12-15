@@ -27,7 +27,7 @@ public:
 	///It should be overridden by each inherited figure
 
 	///Decide the parameters that you should pass to each function
-
+	virtual int GetFillColor() = 0;
 	virtual bool IsInside(int ,int) = 0;
 
 	//virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file

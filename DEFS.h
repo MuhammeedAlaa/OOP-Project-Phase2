@@ -17,11 +17,11 @@ enum ActionType //The actions supported (you can add more if needed)
 	DEL,			    //Delete a figure(s)
 	DRAW_Todrawcolor,   // to to choose the color of drawing  
 	DRAW_TOfill ,       //to to choose the color of filling 
-	DRAW_RED,           // to select the red color 
-	DRAW_WHITE,         // to select the white color 
-	DRAW_BLACK,         // to select the black color 
-	DRAW_BLUE,          // to select the blue color 
-	DRAW_GREEN,         // to select the green color 
+	CRED,           // to select the red color 
+	CWHITE,         // to select the white color 
+	CBLACK,         // to select the black color 
+	CBLUE,          // to select the blue color 
+	CGREEN,         // to select the green color 
 	DRAW_CUT,           // to cut a shape it will be highlited  and the last shape cutted which wil be pasted 
 	DRAW_COPY,          // to  copy a shape then it will be pasted but the last shape copied which will be pasted 
 	DRAW_PASTE,         // after coping a shape  it will be coped 

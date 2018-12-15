@@ -15,8 +15,9 @@ public:
 	Point GetV3();
 	
 	virtual void Draw(Output* pOut) const;
-	float area(int , int , int , int , int , int ) ;
+	double area(int , int , int , int , int , int ) ;
 	virtual bool IsInside(int ,int);
+	virtual int GetFillColor();
 	void PrintInfo(Output* pOut);
 
 };

@@ -29,6 +29,23 @@ bool CEllipse::IsInside(int x ,int y)
 			return false ;
 }
 
+int CEllipse::GetFillColor()
+{
+	if(FigGfxInfo.isFilled == false)
+		return 15;
+	if(FigGfxInfo.FillClr == BLACK)
+		return CBLACK;
+	if(FigGfxInfo.FillClr == RED)
+		return CRED;
+	if(FigGfxInfo.FillClr == GREEN)
+		return CGREEN;
+	if(FigGfxInfo.FillClr == WHITE)
+		return CWHITE;
+	return CBLUE;
+
+}
+
+
 void CEllipse::PrintInfo(Output* pOut)
 {
 	// need to put the figure id

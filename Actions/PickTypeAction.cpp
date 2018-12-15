@@ -19,14 +19,12 @@ void PickTypeAction::ReadActionParameters()
 {	
 	//Get a Pointer to the Input  Interfaces
 	Input* pIn = pManager->GetInput();
-	pIn->GetPointClicked(HIDE.x,HIDE.y);
-	if(HIDE.y <= UI.ToolBarHeight)
-	{
-		HIDE.x = HIDE.y = NULL;
-	}
-
-
-
+		pIn->GetPointClicked(HIDE.x,HIDE.y);
+		if(HIDE.y <= UI.ToolBarHeight && HIDE.y >= 0)
+			if(HIDE.x >= 0 && HIDE.x<= UI.MenuItemWidth)
+				HIDE.x = HIDE.y =  0;
+			else
+			HIDE.x = HIDE.y = 1;
 }
 
 // function to make the picked figure's pointer point to null so it's not drawn this wasn't made a member fuction in order not to include CFigure in the header of the class 
@@ -39,7 +37,7 @@ void HideFigure(CFigure** list, CFigure* ShapePtr, int size)
 			list[i] = NULL;
 		}
 	}
-}
+} 
 
 void PickTypeAction::Execute()
 {
@@ -133,10 +131,19 @@ void PickTypeAction::Execute()
 	for (int i = 0; i < pManager->GetFigureCount(); i++)
 	{	
 		ReadActionParameters();
-		if(!HIDE.y)
+		if(HIDE.y == 0)
 		{
-			break;
+			for (int i = 0; i < InitFigCnt; i++)
+			{
+				Copy[i] = TempPtr[i];
+			}
+			pManager->UpdateInterface();
+			Execute();
+			return;
 		}
+		if(HIDE.y == 1)
+			break;
+
 		CFigure* PickedFigure = pManager->GetFigure(HIDE.x, HIDE.y);
 		if(dynamic_cast<CRectangle*>(PickedFigure) && RandShapeType == Rectangle)
 		{
@@ -194,7 +201,7 @@ void PickTypeAction::Execute()
 		
 
 	}
-	if(HIDE.y)
+	if(HIDE.y !=1 && HIDE.y != 0)
 	{
 		pOut->PrintMessage("number of wrong picks : " + to_string(WrongCount)+"   number of right picks : " + to_string(RightCount) + ", Press anywhere to continue");
 		ReadActionParameters();	 // picked figure in this line is found but not necessary but i used this function inorder not to declare another variable of type input
