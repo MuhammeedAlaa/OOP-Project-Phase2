@@ -41,20 +41,13 @@ ActionType ApplicationManager::GetUserAction() const
 void ApplicationManager::ExecuteAction(ActionType ActType) 
 {
 	Action* pAct = NULL;
-	
+	for (int i = 0; i < FigCount; i++)
+	{
+		if(FigList[i]->IsSelected())
+			FigList[i]->SetSelected(false);
+
+	}
 	//According to Action Type, create the corresponding action object
-	if(ActType != DRAW_Todrawcolor && ActType != DRAW_TOfill && ActType != DEL && ActType != SELECT)
-		for (int i = 0; i < FigCount; i++)
-		{
-			if(FigList[i]->IsSelected())
-			{
-				SelectedFig = NULL;
-				FigList[i]->SetSelected(false);
-				UpdateInterface();
-			}
-		}
-
-
 	switch (ActType)
 	{
 		case DRAW_RECT:
@@ -146,6 +139,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			
 		case STATUS:	//a click on the status bar ==> no action
 			return;
+		default:
+			{
+			UpdateInterface();
+			pOut->ClearStatusBar();
+			}
 	}
 	
 	//Execute the created action
@@ -179,6 +177,14 @@ CFigure* ApplicationManager::GetSelected()
 {
 	return SelectedFig;
 }
+//to UnSelect figures
+void ApplicationManager::UnSelect(CFigure* C)
+{
+	C->SetSelected(false);
+	UpdateInterface();
+	SelectedFig=NULL;
+}
+
 
 
 //delete a figure from the list, it had to be implemented here because deleting a figure has effect on the figure list and only the app manager has access to it

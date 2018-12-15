@@ -59,6 +59,8 @@ void ChngDrwClrAction::Execute()
 	}
 	pOut->PrintMessage("Click any where on the drawing area to unselect this shape.");
 	pOut->CreateDrawToolBar();
+	pManager->UnSelect(pManager->GetSelected());
+
 
 }
 

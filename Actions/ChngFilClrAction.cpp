@@ -59,6 +59,8 @@ void ChngFilClrAction::Execute()
 	}
 	pOut->PrintMessage("Click any where to unselect this shape.");
 	pOut->CreateDrawToolBar();
+	pManager->UnSelect(pManager->GetSelected());
+
 
 }
 

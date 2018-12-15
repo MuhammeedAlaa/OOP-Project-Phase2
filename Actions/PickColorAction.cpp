@@ -200,6 +200,8 @@ void PickColorAction::Execute()
 		Copy[i] = TempPtr[i];
 	}
 	delete []TempPtr;
+	pManager->UnSelect(pManager->GetSelected());
+
 }
 
 

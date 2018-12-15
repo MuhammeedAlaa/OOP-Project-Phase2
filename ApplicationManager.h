@@ -42,6 +42,7 @@ public:
 	int GetFigureCount()const;		 // get the actual number of figures
 	CFigure ** GetFigures();	  // get a copy of the figure list
 	CFigure* GetSelected();
+	void UnSelect(CFigure*);
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
