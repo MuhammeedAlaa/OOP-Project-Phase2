@@ -17,10 +17,12 @@ void PickColorAction::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 		pIn->GetPointClicked(HIDE.x,HIDE.y);
 		if(HIDE.y <= UI.ToolBarHeight)
+		{	
 			if(HIDE.x >= UI.MenuItemWidth && HIDE.x<= 2*UI.MenuItemWidth)
 				HIDE.x = HIDE.y =  0;
 			else
-			HIDE.x = HIDE.y = 1;
+				HIDE.x = HIDE.y = 1;
+		}
 }
 
 
@@ -160,17 +162,17 @@ void PickColorAction::Execute()
 			break;
 
 		CFigure* PickedFigure = pManager->GetFigure(HIDE.x, HIDE.y);
-		if(PickedFigure->GetFillColor() == RandShapeColor )
+		if(PickedFigure == NULL )
+		{
+			pOut->PrintMessage("You should pick all the existing figures of the type specified.");
+
+		}
+		else if(PickedFigure->GetFillColor() == RandShapeColor)
 		{
 			HideFigure(Copy, PickedFigure, InitFigCnt);
 			RightCount++;
 			ShapeCount--;
-			pOut->PrintMessage("Well done!");
-
-		}
-		else if(PickedFigure == NULL)
-		{
-			pOut->PrintMessage("You should pick all the existing figures of the type specified.");
+			pOut->PrintMessage("Well done!");	
 		}
 		else
 		{

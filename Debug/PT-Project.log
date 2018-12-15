@@ -1,4 +1,4 @@
-﻿Build started 15/12/2018 04:14:04 م.
+﻿Build started 15/12/2018 04:45:03 م.
      1>Project "E:\Projects\new repo\OOP-Project-Phase2\PT-Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          E:\new visual studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt ApplicationManager.cpp
@@ -71,4 +71,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.44
+Time Elapsed 00:00:03.29

@@ -180,9 +180,12 @@ CFigure* ApplicationManager::GetSelected()
 //to UnSelect figures
 void ApplicationManager::UnSelect(CFigure* C)
 {
-	C->SetSelected(false);
-	UpdateInterface();
-	SelectedFig=NULL;
+	if(SelectedFig!=NULL)
+	{
+		C->SetSelected(false);
+		UpdateInterface();
+		SelectedFig=NULL;
+	}
 }
 
 
