@@ -193,6 +193,30 @@ void Output::CreatePlayToolBar() const
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+void Output::CreateChooseFigToolBar() const
+{
+	UI.InterfaceMode = MODE_CHOOSE_FIG;
+
+	string MenuItemImages[ITEM_COUNT];
+	MenuItemImages[ITM_RECTANGLE] = "images\\MenuItems\\Menu_Rect.jpg";     //icon for drawing rectangle 
+  	MenuItemImages[ITM_RHOMBUS]="images\\MenuItems\\Menu_RHO.jpg";         //icon for drawing  rohoumbs 
+	MenuItemImages[ITM_ELLIPSE]="images\\MenuItems\\Menu_ELI.jpg";        //icon for drawing  elipse 
+	MenuItemImages[ITM_TRIANGLE]="images\\MenuItems\\Menu_TRi.jpg";         //icon for drawing  triangle 
+	MenuItemImages[ITM_LINE]="images\\MenuItems\\Menu_LIN.jpg";         //icon for drawing line 
+	//Draw menu item one image at a time
+	pWind->SetPen(BLACK,2);
+	for(int i=0; i<DRAW_ITM_COUNT; i++)
+	{
+		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+		//draw a line between each element in the toolbar
+		pWind->DrawLine(i*UI.MenuItemWidth, 0, i*UI.MenuItemWidth, UI.ToolBarHeight);	
+	}
+	//draw a line after last element in the toolbar
+	pWind->DrawLine(DRAW_ITM_COUNT * UI.MenuItemWidth, 0, DRAW_ITM_COUNT * UI.MenuItemWidth, UI.ToolBarHeight);
+	//Draw a line under the toolbar
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+}
+////////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::ClearDrawArea() const
 {

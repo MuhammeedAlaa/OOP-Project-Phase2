@@ -12,6 +12,7 @@ enum GUI_MODE	//Graphical user interface mode
 	MODE_DRAW,	//Drawing mode (startup mode)
 	MODE_PLAY,	//Playing mode
 	MODE_COLOR, //the mode to select the color of the drawing or filling 
+	MODE_CHOOSE_FIG  // to choose a figure in save by type
 	
 };
 
@@ -61,6 +62,17 @@ enum PlayMenuItem //The items of the Play menu (you should add more items)
 	PLAY_EXIT,      //to Exit from the program  
 	PLAY_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
 };
+
+enum ChooseFigureItem
+{
+	ITM_RECTANGLE,         //Recangle item in menu
+	ITM_LINE,          //line  item in menu
+	ITM_TRIANGLE,          //TRiangle item in menu 
+ 	ITM_RHOMBUS,          //Rohoumbs item in menu
+	ITM_ELLIPSE,		  // Ellipse item in meu
+	ITEM_COUNT
+};
+
 
 __declspec(selectany) //This line to prevent "redefinition error"
 

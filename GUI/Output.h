@@ -11,8 +11,9 @@ public:
 
 	window* CreateWind(int, int, int , int) const; //creates the application window
 	void CreateDrawToolBar() const;	//creates Draw mode toolbar & menu
-	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
+	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu	   
 	void CreateStatusBar() const;	//create the status bar
+	void CreateChooseFigToolBar() const;  // create a tool bar with the types of figures to choose from them to save by type
 	void CreatecolorToolBar() const; //create a tool bar to change color of the figure
 	Input* CreateInput() const; //creates a pointer to the Input object	
 	void ClearStatusBar() const;	//Clears the status bar
