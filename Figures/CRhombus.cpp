@@ -28,14 +28,14 @@ double CRhombus::area(int x1, int y1, int x2, int y2, int x3, int y3)
 
 bool CRhombus::IsInside(int x, int y)
 {
-	float A=area(center.x-100,center.y,center.x,center.y+50,center.x+100,center.y)*2;
-			float A1=area(x,y,center.x,center.y+50,center.x+100,center.y);
-			float A2=area(x,y,center.x,center.y+50,center.x-100,center.y);
-			float A3=area(x,y,center.x,center.y-50,center.x+100,center.y);
-			float A4=area(x,y,center.x,center.y-50,center.x-100,center.y);
-			if(A==(A1+A2+A3+A4))
-			 return true ;
-			return false;
+	double A=area(center.x-100,center.y,center.x,center.y+50,center.x+100,center.y)*2;
+	double A1=area(x,y,center.x,center.y+50,center.x+100,center.y);
+	double A2=area(x,y,center.x,center.y+50,center.x-100,center.y);
+	double A3=area(x,y,center.x,center.y-50,center.x+100,center.y);
+	double A4=area(x,y,center.x,center.y-50,center.x-100,center.y);
+	if(A==(A1+A2+A3+A4))
+		return true ;
+	return false;
 }
 
 int CRhombus::GetFillColor()

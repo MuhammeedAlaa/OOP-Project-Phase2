@@ -1,5 +1,2 @@
-﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  savebytype.cpp
-AddEllipseAction.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-savebytype.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall savebytype::Execute(void)" (?Execute@savebytype@@UAEXXZ)
-.\Debug/PT Project.exe : fatal error LNK1120: 1 unresolved externals
+﻿AddEllipseAction.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  PT-Project.vcxproj -> C:\Users\el-yoser\source\repos\OOP-Project-Phase2\.\Debug\PT Project.exe

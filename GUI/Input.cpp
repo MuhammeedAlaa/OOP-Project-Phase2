@@ -111,7 +111,7 @@ ActionType Input::GetUserAction() const
 		return STATUS;
 	}
 		
-	else
+	else if(UI.InterfaceMode == MODE_COLOR)
 	{
 		if ( y >= 0 && y < UI.ToolBarHeight)
 		{
@@ -138,6 +138,35 @@ ActionType Input::GetUserAction() const
 		//[3] User clicks on the status bar
 		return STATUS;
 	}
+	else
+	{
+		if ( y >= 0 && y < UI.ToolBarHeight)
+		{
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+
+			switch (ClickedItemOrder)
+			{
+			case ITM_RECTANGLE: return DRAW_RECT; 
+			case ITM_TRIANGLE: return DRAW_TRI;
+			case ITM_LINE: return DRAW_LINE;
+			case ITM_RHOMBUS: return DRAW_RHOMBUS;
+			case ITM_ELLIPSE: return DRAW_ELLIPSE;
+			default: return EMPTY;	//A click on empty place in desgin toolbar
+			}
+		}
+
+		else if ( y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
+		{
+			return DRAWING_AREA;	
+		}
+		
+		//[3] User clicks on the status bar
+		return STATUS;
+
+	}
+
 
 }
 /////////////////////////////////

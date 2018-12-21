@@ -201,7 +201,6 @@
       <Filter>Application Manager</Filter>
     </ClCompile>
     <ClCompile Include="Actions\LoadAction.cpp" />
-    <ClCompile Include="savebytype.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -342,7 +341,6 @@
     </ClInclude>
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
-    <ClInclude Include="savebytype.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
