@@ -73,6 +73,34 @@ void CTriangle::PrintInfo(Output* pOut)
 {
 	pOut->PrintMessage("The Triangle ID is "+to_string(ID)+", corners are at ("+to_string(vertix1.x)+", "+to_string(vertix1.y)+")  ("+to_string(vertix2.x)+", "+to_string(vertix2.y)+")  ("+to_string(vertix3.x)+", "+to_string(vertix3.y)+").");
 }
-
+void CTriangle::save(ofstream &file) {
+	string Fillcolour;
+	string Drawcolour;
+	if (FigGfxInfo.isFilled == false)
+		Fillcolour = "15";
+	if (FigGfxInfo.FillClr == BLACK)
+		Fillcolour = "CBLACK";
+	if (FigGfxInfo.FillClr == RED)
+		Fillcolour = "CRED";
+	if (FigGfxInfo.FillClr == GREEN)
+		Fillcolour = "CGREEN";
+	if (FigGfxInfo.FillClr == WHITE)
+		Fillcolour = "CWHITE";
+	if (FigGfxInfo.FillClr == BLUE)
+		Fillcolour = "CBLUE";
+	if (FigGfxInfo.FillClr == MAGENTA)
+		Fillcolour = "CMAGENTA";
+	if (FigGfxInfo.DrawClr == BLACK)
+		Drawcolour = "CBLACK";
+	if (FigGfxInfo.DrawClr == RED)
+		Drawcolour = "CRED";
+	if (FigGfxInfo.DrawClr == GREEN)
+		Drawcolour = "CGREEN";
+	if (FigGfxInfo.DrawClr == WHITE)
+		Drawcolour = "CWHITE";
+	if (FigGfxInfo.DrawClr == BLUE)
+		Drawcolour = "CBLUE";
+	file << "TRIANG " << ID << " " << vertix1.x << " " << vertix1.y << " " << vertix2.x << " " << vertix2.y << " " << vertix3.x << " " << vertix3.y<<" "<< Drawcolour<<" "<<Fillcolour << endl;
+}
 
 

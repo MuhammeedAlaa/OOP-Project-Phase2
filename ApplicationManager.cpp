@@ -14,6 +14,8 @@
 #include "Actions\ChngDrwClrAction.h"
 #include "Actions\ChngFilClrAction.h"
 #include <cstdlib>
+#include "Actions/SaveAction.h"
+#include "Actions/LoadAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -87,16 +89,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				break;
 
 		case SAVE:							  
-				pOut->PrintMessage("Action: a Click on Save graph, Click anywhere");
-				break;
+			pOut->PrintMessage("Action: a Click on Save graph,enter the savefile name");
+			pAct = new SaveAction(this);
+			break;
 
 		case SAVE_BY_TYPE:
 				pOut->PrintMessage("Action: a Click on Save by type, Click anywhere");
 				break;
 		
 		case LOAD:
-				pOut->PrintMessage("Action: a Click on Load, Click anywhere");
-				break;
+			pOut->PrintMessage("Action: a Click on Load, Click anywhere");
+			pAct = new LoadAction(this);
+			break;
 		
 		case TO_DRAW:
 				pAct=new SwitchToDrawAction(this);
@@ -259,6 +263,16 @@ Input *ApplicationManager::GetInput() const
 //Return a pointer to the output
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
+/////////////////////////////////////////////////////////////////////////////////////
+//=================================================================================//
+//                             saveing figures                                     //
+//=================================================================================//
+void ApplicationManager::Savefigures(ofstream& file) {
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->save(file);
+	}
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()

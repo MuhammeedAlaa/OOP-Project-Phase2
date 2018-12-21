@@ -1,5 +1,7 @@
 #pragma once
 #include "CFigure.h"
+#include <fstream>
+
 class CTriangle :
 	public CFigure
 {
@@ -19,6 +21,8 @@ public:
 	virtual bool IsInside(int ,int);
 	virtual int GetFillColor();
 	void PrintInfo(Output* pOut);
+	virtual void save(ofstream&);
+
 
 };
 

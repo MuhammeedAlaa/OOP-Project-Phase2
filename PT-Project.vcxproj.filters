@@ -141,9 +141,6 @@
     <ClCompile Include="GUI\Output.cpp">
       <Filter>GUI Classes</Filter>
     </ClCompile>
-    <ClCompile Include="ApplicationManager.cpp">
-      <Filter>Application Manager</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp">
       <Filter>CMUgraphicsLib</Filter>
@@ -199,6 +196,12 @@
     <ClCompile Include="Actions\PickColorAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\SaveAction.cpp" />
+    <ClCompile Include="ApplicationManager.cpp">
+      <Filter>Application Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\LoadAction.cpp" />
+    <ClCompile Include="savebytype.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -337,6 +340,9 @@
     <ClInclude Include="Actions\PickColorAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\SaveAction.h" />
+    <ClInclude Include="Actions\LoadAction.h" />
+    <ClInclude Include="savebytype.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

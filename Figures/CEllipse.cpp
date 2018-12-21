@@ -1,5 +1,5 @@
 #include "CEllipse.h"
-
+using namespace std;
 
 CEllipse::CEllipse(Point P1, GfxInfo FigureGfxInfo, int id):CFigure(FigureGfxInfo)
 {
@@ -51,4 +51,33 @@ void CEllipse::PrintInfo(Output* pOut)
 	// need to put the figure id
 	pOut->PrintMessage("The Ellipse ID is "+to_string(ID)+", Center is at("+to_string(Center.x)+", "+to_string(Center.y)+"), Height is 100, Width is 200.");
 }
+void CEllipse::save(ofstream& file) {
+	string Fillcolour;
+	string Drawcolour;
+	if (FigGfxInfo.isFilled == false)
+		Fillcolour = "15";
+	if (FigGfxInfo.FillClr == BLACK)
+		Fillcolour = "CBLACK";
+	if (FigGfxInfo.FillClr == RED)
+		Fillcolour = "CRED";
+	if (FigGfxInfo.FillClr == GREEN)
+		Fillcolour = "CGREEN";
+	if (FigGfxInfo.FillClr == WHITE)
+		Fillcolour = "CWHITE";
+	if (FigGfxInfo.FillClr == BLUE)
+		Fillcolour = "CBLUE";
+	if (FigGfxInfo.FillClr == MAGENTA)
+		Fillcolour = "CMAGENTA";
+	if (FigGfxInfo.DrawClr == BLACK)
+		Drawcolour = "CBLACK";
+	if (FigGfxInfo.DrawClr == RED)
+		Drawcolour = "CRED";
+	if (FigGfxInfo.DrawClr == GREEN)
+		Drawcolour = "CGREEN";
+	if (FigGfxInfo.DrawClr == WHITE)
+		Drawcolour = "CWHITE";
+	if (FigGfxInfo.DrawClr == BLUE)
+		Drawcolour = "CBLUE";
 
+	file << "ELIP " << ID << " " << Center.x << " " << Center.y << " " << Drawcolour << " " << Fillcolour <<endl;
+}

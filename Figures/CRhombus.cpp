@@ -58,3 +58,32 @@ void CRhombus::PrintInfo(Output* pOut)
 {
 	pOut->PrintMessage("The Rhombus ID is "+to_string(ID)+", Center is at("+to_string(center.x)+", "+to_string(center.y)+"), Height is 100, Width is 200.");
 }
+void CRhombus::save(ofstream& file) {
+	string Fillcolour;
+	string Drawcolour;
+	if (FigGfxInfo.isFilled == false)
+		Fillcolour = "15";
+	if (FigGfxInfo.FillClr == BLACK)
+		Fillcolour = "CBLACK";
+	if (FigGfxInfo.FillClr == RED)
+		Fillcolour = "CRED";
+	if (FigGfxInfo.FillClr == GREEN)
+		Fillcolour = "CGREEN";
+	if (FigGfxInfo.FillClr == WHITE)
+		Fillcolour = "CWHITE";
+	if (FigGfxInfo.FillClr == BLUE)
+		Fillcolour = "CBLUE";
+	if (FigGfxInfo.FillClr == MAGENTA)
+		Fillcolour = "CMAGENTA";
+	if (FigGfxInfo.DrawClr == BLACK)
+		Drawcolour = "CBLACK";
+	if (FigGfxInfo.DrawClr == RED)
+		Drawcolour = "CRED";
+	if (FigGfxInfo.DrawClr == GREEN)
+		Drawcolour = "CGREEN";
+	if (FigGfxInfo.DrawClr == WHITE)
+		Drawcolour = "CWHITE";
+	if (FigGfxInfo.DrawClr == BLUE)
+		Drawcolour = "CBLUE";
+	file << "RHOM " << ID << " " << center.x << " " << center.y<<" "<<Drawcolour<<" "<< Fillcolour<< endl;
+}

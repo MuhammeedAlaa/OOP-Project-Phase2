@@ -1,5 +1,6 @@
 #pragma once
 #include "CFigure.h"
+#include <fstream>
 class CLine : public CFigure
 {
 private:
@@ -13,5 +14,7 @@ public:
 	virtual bool IsInside(int ,int);
 	virtual int GetFillColor();
 	void PrintInfo(Output* pOut);
+	virtual void save(ofstream&);
+
 
 };

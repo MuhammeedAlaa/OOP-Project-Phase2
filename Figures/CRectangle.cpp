@@ -1,5 +1,5 @@
 #include "CRectangle.h"
-
+using namespace std;
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo, int id):CFigure(FigureGfxInfo)
 {
 	
@@ -54,6 +54,35 @@ int CRectangle::GetFillColor()
 void CRectangle::PrintInfo(Output* pOut)
 {
 	pOut->PrintMessage("The Rectangle ID is "+to_string(ID)+",  height is "+to_string(abs(Corner1.y-Corner2.y))+", Width is "+to_string(abs(Corner1.x-Corner2.x))+".");
+}
+void CRectangle::save(ofstream& file) {
+	string Fillcolour;
+	string Drawcolour;
+	if (FigGfxInfo.isFilled == false)
+		Fillcolour = "15";
+	if (FigGfxInfo.FillClr == BLACK)
+		Fillcolour = "CBLACK";
+	if (FigGfxInfo.FillClr == RED)
+		Fillcolour = "CRED";
+	if (FigGfxInfo.FillClr == GREEN)
+		Fillcolour = "CGREEN";
+	if (FigGfxInfo.FillClr == WHITE)
+		Fillcolour = "CWHITE";
+	if (FigGfxInfo.FillClr == BLUE)
+		Fillcolour = "CBLUE";
+	if (FigGfxInfo.FillClr == MAGENTA)
+		Fillcolour = "CMAGENTA";
+	if (FigGfxInfo.DrawClr == BLACK)
+		Drawcolour = "CBLACK";
+	if (FigGfxInfo.DrawClr == RED)
+		Drawcolour = "CRED";
+	if (FigGfxInfo.DrawClr == GREEN)
+		Drawcolour = "CGREEN";
+	if (FigGfxInfo.DrawClr == WHITE)
+		Drawcolour = "CWHITE";
+	if (FigGfxInfo.DrawClr == BLUE)
+		Drawcolour = "CBLUE";
+	file << "RECT " << ID << " " << Corner1.x << " " << Corner1.y << " " << Corner2.x << " " << Corner2.y<<" "<<Drawcolour << " " << Fillcolour << endl;
 }
 
 
